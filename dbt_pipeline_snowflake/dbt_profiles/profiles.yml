@@ -1,0 +1,23 @@
+dbt_pipeline_snowflake:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('DBT_ENV_SECRET_SNOWFLAKE_ACCOUNT','xf59641.europe-west4.gcp') }}" #gj49014.europe-west4.gcp
+
+      # User/password auth
+      user: "{{ env_var('DBT_ENV_SECRET_SNOWFLAKE_USER','USER_DBT') }}" #USER_DBT
+      password: "{{ env_var('DBT_ENV_SECRET_SNOWFLAKE_PASSWORD','Snowflake@2022') }}" #"Snowflake@2022"
+      role: DBT_ROLE
+      database: DBT_DB
+      warehouse: DBT_WH
+      schema: SCHEMA_DBT
+      threads: 10
+      client_session_keep_alive: False
+      query_tag: profiles_validation
+
+      # optional
+      connect_retries: 0 # default 0
+      connect_timeout: 10 # default: 10
+      retry_on_database_errors: False # default: false 
+      retry_all: False  # default: false

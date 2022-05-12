@@ -1,0 +1,42 @@
+
+version: 2
+
+models:
+  - name: my_first_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: my_second_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+sources:
+  - name: instacart-market-data
+    database: DBT_DB
+    schema: SCHEMA_DBT
+    tables:
+      - name: DBT_AISLES
+        columns:
+          - name: aisle
+          - name: aisle_id
+      - name: DBT_PRODUCTS
+        columns:
+          - name: aisle_id
+          - name: department_id
+          - name: product_id
+          - name: product_name
+      - name: DBT_DEPARTMENTS
+        columns:
+          - name: department
+          - name: department_id
+      - name: DBT_ORDERS
+      - name: DBT_ORDER_PRODUCTS__PRIOR  
